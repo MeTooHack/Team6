@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapView } from 'expo';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 
 
@@ -14,11 +14,23 @@ import { StyleSheet, Text, View } from 'react-native';
 export default class App extends React.Component {
   render() {
     return (
-      <GetMapView />
-      //<View style={styles.container}>
-      //  <Text> HELLO LOVELY WORLD! </Text>
-      //</View>
-    );
+      <View>
+        <MapView
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude: 57.704085,
+            longitude: 11.965321,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }} showsUserLocation/>
+        <Button onPress={event => this.onButtonPress(event)} title="Hello"/>
+      </View>
+    )
+  }
+
+  onButtonPress = (event) => {
+    console.log("hello")
+    console.log(event.target.title)
   }
 }
 
@@ -29,17 +41,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  
 });
 
-function GetMapView(){
-  return(<MapView
-                  style={{ flex: 1 }}
-                  initialRegion={{
-                    latitude: 57.704085,
-                    longitude: 11.965321,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                  }}
-                  showsUserLocation
-                />)
-}
+
