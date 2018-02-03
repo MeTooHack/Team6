@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapView } from 'expo';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ReportIncident from './ReportIncident';
 
 
 
@@ -12,36 +13,127 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 
 export default class App extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      showActionMenu: false
+    }
+  }
+
   render() {
-    return (
-      <View>
+    const showActionMenu = this.state.showActionMenu
+    let menu = null
+    if (showActionMenu) {
+      console.log(showActionMenu)
+      menu = this.actionMenu()
+    }
+
+    return(
+      <View style={styles.container}>
         <MapView
-          style={{ flex: 1 }}
+          style={{position: "absolute", top: 0, bottom: 0, left: 0, right: 0}}
           initialRegion={{
             latitude: 57.704085,
             longitude: 11.965321,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }} showsUserLocation/>
-        <Button onPress={event => this.onButtonPress(event)} title="Hello"/>
+        <View style={styles.buttonContainer}>
+          {menu}
+          <TouchableOpacity onPress={this.onButtonPress} style={styles.button}>
+            <Text style={styles.buttonText}>+</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
 
-  onButtonPress = (event) => {
-    console.log("hello")
-    console.log(event.target.title)
+  onButtonPress = () => {
+    this.setState({showActionMenu: !this.state.showActionMenu})
   }
+
+  onCategoryButtonPress = (category) => {
+    console.log("category ", category)
+    //return <ReportIncident category={category}/>
+  }
+
+  actionMenu = () => (
+    <View style={styles.actionMenuContainer}>
+      <TouchableOpacity onPress={this.onCategoryButtonPress.bind(this, "physical")} style={styles.physicalCategoryButton}>
+        <Text style={styles.categoryButtonText}>F</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={this.onCategoryButtonPress.bind(this, "verbal")} style={styles.verbalCategoryButton}>
+        <Text style={styles.categoryButtonText}>V</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={this.onCategoryButtonPress.bind(this, "social")} style={styles.digitalCategoryButton}>
+        <Text style={styles.categoryButtonText}>B</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
+
+
+const pink = "#F000EF"
+const purple = "#7A30CF"
+const yellow = "#FFD101"
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  
+  buttonContainer: {
+    flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    backgroundColor: "#7A30CF",
+    borderRadius: 50,
+    height: 75,
+    marginBottom: 10,
+    marginRight: 10,
+    width: 75,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 50,
+    paddingTop: 4,
+    textAlign: "center",
+  },
+  actionMenuContainer: {
+    position: "absolute",
+    flex: 1,
+    justifyContent:"space-between",
+    paddingBottom: 100
+  },
+  physicalCategoryButton: {
+    backgroundColor: yellow,
+    borderRadius: 50,
+    height: 50,
+    marginBottom: 10,
+    marginRight: 20,
+    width: 50,
+  },
+  verbalCategoryButton: {
+    backgroundColor: pink,
+    borderRadius: 50,
+    height: 50,
+    marginBottom: 10,
+    marginRight: 20,
+    width: 50,
+  },
+  digitalCategoryButton: {
+    backgroundColor: purple,
+    borderRadius: 50,
+    height: 50,
+    marginBottom: 10,
+    marginRight: 20,
+    width: 50,
+  },
+  categoryButtonText: {
+    textAlign: "center",
+    paddingTop: 10,
+    fontSize: 25,
+    color: "#fff",
+  }
 });
-
-
