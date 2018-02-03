@@ -1,15 +1,23 @@
 import React from 'react';
+import { MapView } from 'expo';
 import { StyleSheet, Text, View } from 'react-native';
+
+
+
+//<Text>Open up App.js to start working on your app!</Text>
+//<Text>Changes you make will automatically reload.</Text>
+//<Text>Shake your phone to open the developer menu.</Text>
+
+
+
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text> HELLO LOVELY WORLD! </Text>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <GetMapView />
+      //<View style={styles.container}>
+      //  <Text> HELLO LOVELY WORLD! </Text>
+      //</View>
     );
   }
 }
@@ -22,3 +30,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+function GetMapView(){
+  return(<MapView
+                  style={{ flex: 1 }}
+                  initialRegion={{
+                    latitude: 57.704085,
+                    longitude: 11.965321,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                  }}
+                  showsUserLocation
+                />)
+}
