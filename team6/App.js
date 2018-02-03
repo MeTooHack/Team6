@@ -13,10 +13,9 @@ import mapStyle from './mapstyle.json'
 
 
 
-
 export default class App extends React.Component {
   render() {
-    console.log(data);
+    console.log("HEJ");
 
     return (
       //<View>
@@ -30,13 +29,32 @@ export default class App extends React.Component {
           }} showsUserLocation
           customMapStyle={mapStyle}>
 
-          {data.map(marker => (
-            <MapView.Marker
-              key={marker.key}
+          {data.map((marker, index) => {
+
+            let img = null;
+
+            switch(marker.category) {
+              case "FYSISKT":
+                  img = require("./res/icons/fysiskt.png");
+                  break;
+              case "BILD":
+                  img = require("./res/icons/bild.png");
+                  break;
+              case "VERBALT":
+                  img = require("./res/icons/verbalt.png");
+                  break;
+              default:
+                  img = require("./res/icons/rosa_stor.png");
+                  break;
+            }
+
+            return (<MapView.Marker
+              key={index}
               coordinate={{latitude: marker.lat, longitude: marker.long}}
               title={marker.type}
-              />
-            ))
+              image={img}
+              />)
+            })
           }
 
           </MapView>

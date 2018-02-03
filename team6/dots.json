@@ -1,14 +1,37 @@
 [
   {
-    "key": "a",
     "lat": 57.705505,
-    "long": 11.963721,
-    "type": "snip"
+    "long": 11.967714,
+    "category": "FYSISKT",
+    "text": "En kille jag aldrig sett smiskade mig i det fullproppade skolcafét. Alla hans kompisar skrattade och klappade honom på axeln och alla andra låtsades som ingenting."
   },
   {
-    "key":"b",
-    "lat": 57.715505,
+    "lat": 57.704100,
     "long": 11.963721,
-    "type": "snap"
-  }
-    ]
+    "category": "FYSISKT",
+    "text": "En kille i min klass drar ner sina shorts på idrotten framför mig och blottar sitt kön, vill att jag ska kolla. Läraren ser men säger inget.."
+  },
+ {
+    "lat": 57.705499,
+    "long": 11.963721,
+    "category": "BILD",
+    "text": "En kille, vet inte vem det är skickade en dickpic till mig på snapchat"
+  },
+
+ {
+    "lat": 57.705912,
+    "long": 11.964624,
+    "category": "VERBALT",
+    "text": "Killarna på fritidsgården börjar skrika att de skulle 'knulla mig'."
+  },
+
+ {
+    "lat": 57.705309,
+    "long": 11.964678,
+    "category": "FYSISKT",
+    "text": "Min datorkunskapslärare på gymnasiet gav mig högsta betyg för att han tyckte jag hade snygga bröst. Han sa det alltså rakt ut under betygssamtalet…"
+  },
+
+
+
+]
