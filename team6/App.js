@@ -1,7 +1,10 @@
 import React from 'react';
+//import { MapView } from 'react-native-map-clustering';
 import { MapView } from 'expo';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReportIncident from './ReportIncident';
+import data from './dots.json';
+import mapStyle from './mapstyle.json'
 
 
 
@@ -28,7 +31,7 @@ export default class App extends React.Component {
       menu = this.actionMenu()
     }
 
-    return(
+    return (
       <View style={styles.container}>
         <MapView
           style={{position: "absolute", top: 0, bottom: 0, left: 0, right: 0}}
@@ -37,7 +40,18 @@ export default class App extends React.Component {
             longitude: 11.965321,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
-          }} showsUserLocation/>
+          }}
+          showsUserLocation
+          customMapStyle={mapStyle}>
+            {data.map(marker => (
+              <MapView.Marker
+                key={marker.key}
+                coordinate={{latitude: marker.lat, longitude: marker.long}}
+                title={marker.type}
+              />
+            ))
+            }
+        </MapView>
         <View style={styles.buttonContainer}>
           {menu}
           <TouchableOpacity onPress={this.onButtonPress} style={styles.button}>
