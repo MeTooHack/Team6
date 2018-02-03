@@ -1,7 +1,9 @@
 import React from 'react';
+//import { MapView } from 'react-native-map-clustering';
 import { MapView } from 'expo';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import data from './dots.json';
+import mapStyle from './mapstyle.json'
 
 
 
@@ -25,7 +27,8 @@ export default class App extends React.Component {
             longitude: 11.965321,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
-          }} showsUserLocation >
+          }} showsUserLocation
+          customMapStyle={mapStyle}>
 
           {data.map(marker => (
             <MapView.Marker
